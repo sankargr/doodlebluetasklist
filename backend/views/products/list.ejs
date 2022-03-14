@@ -1,0 +1,58 @@
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="mb-3">
+                    <h5 class="card-title">Product List
+                        <span class="pull-right">
+                            <a type="button" class="btn btn-primary" href="/products/create">Add Product</a>
+                        </span></h5>
+                </div>
+                <table class="table table-bordered">
+                    <thead style="
+            color: white;
+            background: #8d8686;
+            font-size: 17px;
+            font-weight: 800;
+        ">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Created Date</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% if(result && result.length > 0) { %>
+                        <% var sno = 0 %>
+                        <% result.forEach(function(item) { %>
+                        <% sno++ %>
+                        <tr>
+                            <th scope="row"><%= sno %></th>
+                            <td><%=  moment(item.createdAt).format("DD/MM/YYYY")  %> </td>
+                            <td><%= item.name %></td>
+                            <td><%= item.price %></td>
+                            <td>
+                                <% if(item.status==1) { %>
+                                <span class="badge bg-success">Active</span>
+                                <% } else { %>
+                                <span class="badge bg-warning text-dark">In Active</span>
+                                <% }  %>
+                            </td>
+                            <td><a href="/products/update/<%= item._id %>"> <i class="fa fa-pencil-square-o" style="cursor:pointer" aria-hidden="true"></i>
+                            </a></td>
+                        </tr>
+                        <% }) %>
+                        <% } else { %>
+                        <tr>
+                            <th colspan="6">No Record Found</th>
+                        </tr>
+                        <% }  %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

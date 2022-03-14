@@ -1,0 +1,133 @@
+<nav class="sidebar sidebar-offcanvas" id="sidebar">
+	<ul class="nav">
+
+		<template  v-if="isLogin">
+
+
+			<li class="nav-item active">
+				<a class="nav-link" href="../../index.html">
+					<span class="menu-title">{{loginName}}</span>
+				</a>
+			</li>
+			
+			
+			<template v-if="loginType=='admin'">
+				<li class="nav-item">
+					<a class="nav-link collapsed" data-toggle="collapse" href="#ui-product" aria-expanded="false"
+						aria-controls="ui-basic">
+						<span class="menu-title">Product Management</span>
+						<i class="fa fa-arrow-right ml-auto" aria-hidden="true"></i>
+					</a>
+					<div class="collapse" id="ui-product" style="">
+						<ul class="nav flex-column sub-menu">
+							<li class="nav-item"> <a class="nav-link" @click.prevent="gotoProductList()">
+									List</a>
+							</li>
+							
+						</ul>
+					</div>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link collapsed" data-toggle="collapse" href="#ui-report" aria-expanded="false"
+						aria-controls="ui-basic">
+						<span class="menu-title">Reports</span>
+						<i class="fa fa-arrow-right ml-auto" aria-hidden="true"></i>
+					</a>
+					<div class="collapse" id="ui-report" style="">
+						<ul class="nav flex-column sub-menu">
+							<li class="nav-item"> <a class="nav-link" @click.prevent="gotoCustomerWiseSales()">Customer Wise
+									Sales</a>
+							</li>
+							<li class="nav-item"> <a class="nav-link" @click.prevent="gotoProductwiseSales()">Product Wise
+									Sales</a>
+							</li>
+						</ul>
+					</div>
+				</li>
+			</template>
+			<template v-else>
+				<li class="nav-item">
+					<a class="nav-link" @click.prevent="gotoEcommerce()">
+						<span class="menu-title">E Commerce</span>
+					</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" data-toggle="collapse" href="#form-elements" aria-expanded="false"
+						aria-controls="form-elements">
+						<span class="menu-title">Orders</span>
+						<i class="fa fa-arrow-right ml-auto" aria-hidden="true"></i>
+					</a>
+					<div class="collapse" id="form-elements">
+						<ul class="nav flex-column sub-menu">
+							<li class="nav-item"><a class="nav-link" @click.prevent="gotoOrderList()">Order List</a>
+							</li>
+						</ul>
+					</div>
+				</li>
+			</template>
+			
+							
+			<li class="nav-item">
+				<a class="nav-link" @click.prevent="gotoLogout()">
+					<span class="menu-title">Logout</span>
+				</a>
+			</li>
+
+			
+
+		</template>
+
+		<template  v-else>
+			<li class="nav-item">
+				<a class="nav-link collapsed" data-toggle="collapse" href="#ui-admin" aria-expanded="false"
+					aria-controls="ui-basic">
+					<span class="menu-title">Admin</span>
+					<i class="fa fa-arrow-right ml-auto" aria-hidden="true"></i>
+				</a>
+				<div class="collapse" id="ui-admin" style="">
+					<ul class="nav flex-column sub-menu">
+						<li class="nav-item"> <a class="nav-link"  @click.prevent="gotoAdminSignin()" href="/">SignIn</a>
+						</li>
+						<li class="nav-item"> <a class="nav-link" @click.prevent="gotoAdminSignup()"  href="/">SignUp</a>
+						</li>
+					</ul>
+				</div>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link collapsed" data-toggle="collapse" href="#ui-user" aria-expanded="false"
+					aria-controls="ui-basic">
+					<span class="menu-title">User</span>
+					<i class="fa fa-arrow-right ml-auto" aria-hidden="true"></i>
+				</a>
+				<div class="collapse" id="ui-user" style="">
+					<ul class="nav flex-column sub-menu">
+						<li class="nav-item"> <a class="nav-link" @click.prevent="gotoUserSignin()"  href="/">SignIn</a>
+						</li>
+						<li class="nav-item"> <a class="nav-link" @click.prevent="gotoUserSignup()"  href="/">SignUp</a>
+						</li>
+					</ul>
+				</div>
+			</li>
+	
+		</template>
+		
+
+
+
+
+
+
+
+		
+
+
+
+
+
+
+
+
+
+
+	</ul>
+</nav>

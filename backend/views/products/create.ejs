@@ -1,0 +1,48 @@
+<div class="card">
+    <div class="card-body row">
+        <div>
+            <% if(status==200) {  %>
+
+              <div class="alert alert-success" role="alert">
+                  <h5 class="alert-heading"> <%= msg %></h5>                
+                </div>
+
+              <% } else if(status ==500) {  %>
+                  <div class="alert alert-warning" role="alert">
+                      <h5 class="alert-heading"> <%= msg %></h5>                    
+                  </div>
+                  <% } else if(status ==422) {  %>
+                      <div class="alert alert-warning" role="alert">
+                          <h5 class="alert-heading"> <%= msg %></h5>                    
+                      </div>
+              <% } %>
+          
+        </div>
+
+        
+      <h5 class="card-title">Product Create</h5>
+      <div class="col-6">
+          
+        <form class="row g-1 container" method="POST" action="/products/create" id="productCreateForm">
+            <div class="col-md-12">
+              <label for="validationDefault01" class="form-label">Name</label>
+              <input type="text" class="form-control" id="name"  name="name" id="validationDefault01" value="" required>
+            </div>
+            <div class="col-md-12">
+              <label for="validationDefault02" class="form-label">Description</label>
+              <input type="text" class="form-control" id="desc"  name="desc" id="validationDefault02" value="" required>
+            </div>
+            <div class="col-md-12">
+              <label for="validationDefaultUsername" class="form-label">Price</label>
+              <div class="input-group">
+                <span class="input-group-text" id="inputGroupPrepend2">INR</span>
+                <input type="number" class="form-control" id="price" name="price" id="validationDefaultUsername"  aria-describedby="inputGroupPrepend2" required>
+              </div>
+            </div>   
+            <div class="col-md-12 mt-4">
+                <button type="submit" class="btn btn-primary">Save</button>
+              </div>       
+          </form>
+      </div>      
+    </div>
+  </div>

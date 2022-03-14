@@ -1,0 +1,141 @@
+<div>
+    <div class="container-fluid page-body-wrapper">
+        <Header></Header>
+        <div class="main-panel">
+            <div class="content-wrapper">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title mb-0">Products List <span class="pull-right">
+                            <button type="button" class="btn btn-primary" @click.prevent="openaddModal()">
+                                Add Product
+                            </button>
+                        </span></h5>
+                        <div class="table-responsive mt-5">
+                            <table class="table  table-bordered">
+                                <thead>
+                                    <tr style="background-color: #8482d7;">
+                                        <th>Product</th>
+                                        <th>Price</th>
+                                        <th>Date</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+
+                                    <tr v-for="item in productList">
+                                        <td>{{item.name}}</td>
+                                        <td class="font-weight-bold">INR {{item.price}}</td>
+                                        <td>{{item.createdAt}}</td>
+                                        <td class="font-weight-medium">
+                                            <template v-if="item.status==1">
+                                                <div class="badge badge-success">Active</div>
+                                            </template>
+                                            <template v-else>
+                                                <div class="badge badge-warning">InActive</div>
+                                            </template>
+                                            
+                                        </td>
+                                        <td> <a href="/" @click.prevent="getProduct(item._id)">View & Update</a></td>
+                                    </tr>
+                                    
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Button to Open the Modal -->
+  
+    <!-- The Modal -->
+    <div class="modal" id="addModal" :class="addModalShow ? 'show' : ''"
+        :style="addModalShow ? 'display:block;background: #e9ecef;' : ''">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Add New Product</h4>
+                    <button type="button" @click="closeaddModal()" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12 grid-margin stretch-card">
+                            <div class="card">
+                                <div class="card-body">
+                                    <form class="forms-sample">
+                                        <div class="form-group">
+                                            <label for="exampleInputUsername1">Product Name</label>
+                                            <input type="text" class="form-control" id="exampleInputUsername1"
+                                                placeholder="Product Name" v-model="addFrom.value.name">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Description</label>
+                                            <input type="text" class="form-control" id="exampleInputEmail1"
+                                                placeholder="Description" v-model="addFrom.value.desc">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputPassword1">Price</label>
+                                            <input type="number" class="form-control" id="exampleInputPassword1"
+                                                placeholder="Price" v-model="addFrom.value.price">
+                                        </div>
+                                        <button type="submit" @click.prevent="saveAddProduct()"
+                                            class="btn btn-primary mr-2" >Submit</button>
+                                        <button class="btn btn-danger" @click="closeaddModal()">Cancel</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal" id="addModal" :class="upadateModalShow ? 'show' : ''"
+        :style="upadateModalShow ? 'display:block;background: #e9ecef;' : ''">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Update Product</h4>
+                    <button type="button" @click="closeupdateModal()" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12 grid-margin stretch-card">
+                            <div class="card">
+                                <div class="card-body">
+                                    <form class="forms-sample">
+                                        <div class="form-group">
+                                            <label for="exampleInputUsername1">Product Name</label>
+                                            <input type="text" class="form-control" id="exampleInputUsername1"
+                                                placeholder="Product Name" v-model="updateFrom.value.name">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Description</label>
+                                            <input type="text" class="form-control" id="exampleInputEmail1"
+                                                placeholder="Description" v-model="updateFrom.value.desc">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputPassword1">Price</label>
+                                            <input type="number" class="form-control" id="exampleInputPassword1"
+                                                placeholder="Price" v-model="updateFrom.value.price">
+                                        </div>
+                                        <button type="submit" @click.prevent="upadteProduct()"
+                                            class="btn btn-primary mr-2">Submit</button>
+                                        <button class="btn btn-danger" @click="closeupdateModal()">Cancel</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

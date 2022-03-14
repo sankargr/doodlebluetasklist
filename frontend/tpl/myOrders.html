@@ -1,0 +1,62 @@
+<div>
+  <div class="container-fluid page-body-wrapper">
+    <Header></Header>
+    <div class="main-panel">
+      <div class="content-wrapper">
+        <div class="card">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-12 stretch-card transparent">
+                <div class="card card-light-danger">
+                  <div class="card-body">
+                    <p class="fs-30 mb-2 text-center">My Orders</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row mt-4">
+            
+              
+
+
+              <template v-for="item in myOrdersList">
+                <div class="col-md-4 mb-4 stretch-card transparent" >
+                  <div class="card card-tale">
+                    <div class="card-body">
+                      <p class="fs-30 mb-2">{{item.productId.name}}</p>
+                      <p class=" mb-2"> <i class="fa fa-inr" aria-hidden="true"></i>
+                         {{item.total}}</p>
+                      <p>
+
+                        <p class=" mb-2">
+                          {{new Date(item.createdAt).toLocaleDateString("en-US") }}</p>
+                       <p>
+
+
+                        <template v-if="item.status==1">
+                          <div class="badge badge-success">Completed</div>
+                        </template>
+                        <template v-else>
+                          <div class="badge badge-warning">Cancelled</div>
+                        </template>
+                        
+
+                        <template v-if="item.status==1">
+                          <a href="/" @click.prevent="updateCancel(item._id)" style="color:white">Merk as Cancel</a>
+                        </template>
+
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </template>
+
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
